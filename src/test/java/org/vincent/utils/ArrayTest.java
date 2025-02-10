@@ -20,8 +20,8 @@ class ArrayTest {
     @Test
     void isDuplicateNumberExist() {
         List<Integer> numbers1 = new ArrayList<>(Arrays.asList(1, 2, 3, 1));
-        List<Integer> numbers2 = new ArrayList<>(Arrays.asList(1,2,3,4));
-        List<Integer> numbers3 = new ArrayList<>(Arrays.asList(1,1,1,3,3,4,3,2,4,2));
+        List<Integer> numbers2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> numbers3 = new ArrayList<>(Arrays.asList(1, 1, 1, 3, 3, 4, 3, 2, 4, 2));
 
         assertTrue(Array.isDuplicateNumberExist(numbers1));
         assertFalse(Array.isDuplicateNumberExist(numbers2));

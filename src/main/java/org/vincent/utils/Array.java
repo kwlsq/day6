@@ -45,4 +45,14 @@ public class Array {
         return numsMap.values().stream().toList();
     }
 
+    public static List<Integer> removeOccurences(List<Integer> numsArray, int key){
+        List<Integer> arrayWithNoOccurences = new ArrayList<>();
+        for (Integer integer : numsArray) {
+            if (integer != key) {
+                arrayWithNoOccurences.add(integer);
+            }
+        }
+        return arrayWithNoOccurences;
+    }
+
 }

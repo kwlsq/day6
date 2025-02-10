@@ -1,6 +1,7 @@
 package org.vincent.utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Array {
@@ -28,18 +29,20 @@ public class Array {
         return checkingResult;
     }
 
-//    public static boolean isDuplicateNumberExist(List<Integer> numsArray){
-//        List<Integer> noDuplicatedArray = new ArrayList<>(0);
-//        for(int i=0;i<numsArray.size();i++){
-//            if(noDuplicatedArray.size() == 0){
-//                noDuplicatedArray.add(numsArray.get(i));
-//            }
-//
-//            if(noDuplicatedArray.indexOf(numsArray.get(i)) != -1){
-//                noDuplicatedArray.add(numsArray.get(i));
-//            }
-//        }
+    public static List<Integer> removeDuplicate(List<Integer> numsArray){
+        HashMap<Integer,Integer> numsMap = new HashMap<>(); // key(index) , value
 
-//    }
+        for(int i = 0;i<numsArray.size();i++){
+            if(numsMap.isEmpty()) {
+                numsMap.put(i,numsArray.get(i));
+            }
+
+            if(!numsMap.containsValue(numsArray.get(i))){
+                numsMap.put(i,numsArray.get(i));
+            }
+        }
+
+        return numsMap.values().stream().toList();
+    }
 
 }

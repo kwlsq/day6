@@ -1,8 +1,6 @@
 package org.vincent.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Array {
     public static String rotate(List<Integer> rawNumberList, int itemsToRotate) {
@@ -53,6 +51,23 @@ public class Array {
             }
         }
         return arrayWithNoOccurences;
+    }
+
+    public static List<Integer> findDuplicates(List<Integer> numsArray){
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        List<Integer> duplicates = new ArrayList<>();
+
+        for (int num : numsArray) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                duplicates.add(entry.getKey());
+            }
+        }
+
+        return duplicates;
     }
 
 }

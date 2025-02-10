@@ -46,4 +46,22 @@ class ArrayTest {
 
         assertEquals(expectedNumbers1, Array.removeOccurences(numbers1,1));
     }
+
+    @Test
+    void findDuplicates() {
+        List<Integer> numbers1 = new ArrayList<>(Arrays.asList(4,3,2,7,8,2,3,1));
+        List<Integer> expectedNumbers1 = new ArrayList<>(Arrays.asList(2,3));
+
+        assertEquals(expectedNumbers1, Array.findDuplicates(numbers1));
+
+        List<Integer> numbers2 = new ArrayList<>(Arrays.asList(1,1,2));
+        List<Integer> expectedNumbers2 = new ArrayList<>(Arrays.asList(1));
+
+        assertEquals(expectedNumbers2, Array.findDuplicates(numbers2));
+
+        List<Integer> numbers3 = new ArrayList<>(Arrays.asList(1));
+        List<Integer> expectedNumbers3 = new ArrayList<>(Arrays.asList());
+
+        assertEquals(expectedNumbers3, Array.findDuplicates(numbers3));
+    }
 }

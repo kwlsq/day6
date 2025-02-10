@@ -15,4 +15,31 @@ public class Array {
                 .map(String::valueOf)
                 .collect(java.util.stream.Collectors.joining(", "));
     }
+
+    public static boolean isDuplicateNumberExist(List<Integer> numsArray){
+        boolean checkingResult = false;
+        for(int i=0;i<numsArray.size();i++){
+            int numberChecked = numsArray.get(i);
+            numsArray.remove(i);
+            if(numsArray.indexOf(numberChecked)!=-1){
+                checkingResult = true;
+            }
+        }
+        return checkingResult;
+    }
+
+//    public static boolean isDuplicateNumberExist(List<Integer> numsArray){
+//        List<Integer> noDuplicatedArray = new ArrayList<>(0);
+//        for(int i=0;i<numsArray.size();i++){
+//            if(noDuplicatedArray.size() == 0){
+//                noDuplicatedArray.add(numsArray.get(i));
+//            }
+//
+//            if(noDuplicatedArray.indexOf(numsArray.get(i)) != -1){
+//                noDuplicatedArray.add(numsArray.get(i));
+//            }
+//        }
+
+//    }
+
 }

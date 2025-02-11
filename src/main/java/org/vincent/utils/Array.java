@@ -1,30 +1,50 @@
 package org.vincent.utils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Array {
     public static String rotate(List<Integer> rawNumberList, int itemsToRotate) {
-        List<Integer> rotatedNumbers = new ArrayList<>(rawNumberList);
-        for (int i = 0; i < itemsToRotate; i++) {
-            int firstNumber = rotatedNumbers.getFirst();
-            rotatedNumbers.removeFirst();
-            rotatedNumbers.add(firstNumber);
+        if (rawNumberList == null || rawNumberList.isEmpty()) {
+            throw new IllegalArgumentException("List is empty");
         }
-        return rotatedNumbers.stream()
-                .map(String::valueOf)
-                .collect(java.util.stream.Collectors.joining(", "));
+
+        int length = rawNumberList.size();
+        // to rotate = 10
+        // length = 10
+        // will also skip the operation if the to rotate is 0
+        itemsToRotate = itemsToRotate % length;
+        if (itemsToRotate == 0) {
+            return formatList(rawNumberList);
+        }
+
+        // split the array into two parts, first part is the items to rotate
+        // and the second part is the remaining items
+        // then join them together
+        List<Integer> rotatedList = new ArrayList<>(rawNumberList.subList(itemsToRotate, length));
+        rotatedList.addAll(rawNumberList.subList(0, itemsToRotate));
+        return formatList(rotatedList);
+    }
+
+    private static String formatList(List<Integer> numberList) {
+        return numberList.stream().map(String::valueOf).collect(Collectors.joining(", "));
     }
 
     public static boolean isDuplicateNumberExist(List<Integer> numsArray) {
-        boolean checkingResult = false;
-        for (int i = 0; i < numsArray.size(); i++) {
-            int numberChecked = numsArray.get(i);
-            numsArray.remove(i);
-            if (numsArray.indexOf(numberChecked) != -1) {
-                checkingResult = true;
+        if (numsArray == null || numsArray.isEmpty()) {
+            throw new IllegalArgumentException("List is empty");
+        }
+
+        // O(n) time complexity
+        // the set will use O(1) time complexity to check if the element is already in the set
+        Set<Integer> seen = new HashSet<>();
+        for (int num : numsArray) {
+            if (!seen.add(num)) {
+                // early return if duplicate is found
+                return true;
             }
         }
-        return checkingResult;
+        return false;
     }
 
     public static List<Integer> removeDuplicate(List<Integer> numsArray){
